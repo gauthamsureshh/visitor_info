@@ -20,8 +20,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $visitor->setVisitor($name, $contact, $purpose, $time);
         header("Location: index.php?data=success");
 
-
-
     }
     catch(Exception $e){
         $msg = $e->getMessage();
