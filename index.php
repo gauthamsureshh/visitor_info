@@ -8,49 +8,89 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+                background-image: url('https://getwallpapers.com/wallpaper/full/1/d/8/1291078-full-size-dark-minimal-wallpaper-1920x1080-for-full-hd.jpg'); 
+                background-size: cover;
+                background-position: center;
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+            }
+        .card {
+                opacity: 0.9; 
+                max-width: 500px;
+                padding: 20px;
+                border-radius: 10px; 
+            }
+        .card-title {
+                color: whitesmoke;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        .form-group label {
+            margin-top: 10px;
+                color: wheat; 
+            }
+        .form-control {
+                background-color: rgba(255, 255, 255, 0.8); 
+                border: 1px solid #ccc; 
+            }
+        .btn {
+                width: 100%; 
+                margin-bottom: 15px;
+            }
+    </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <title>Visitor_Log</title>
 </head>
 <body>
-    <div class="container">
-        <h2>Visitor Log</h2>
-        <a class="btn btn-info" href='visitor_info.php'>Visitor Info</a>
-        <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-            <label>Visitor Name
-                <br><input type="text" name="visitor_name">
-            </label><br>
-            <label>Contact Number
-                <br><input type="text" name="contact_number">
-            </label><br>
-            <label>Purpose of Visit
-                <br><input type="text" name="purpose">
-            </label><br>
-            <label>Time of Entry
-                <br><input type="time" name="time">
-            </label><br>
-            <button class="btn btn-success" type="submit">Submit</button>
-        </form>
-        <?php
-            if(!isset($_GET['data'])){
-                exit();
-            }
-            else{
-                $dataCheck = $_GET['data'];
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">Visitor Log</h1>
+            <a class="btn btn-info" href='visitor_info.php'>Visitor Info</a>
+            <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+                <div class="form-group">
+                    <label>Visitor Name</label>
+                    <input type="text" class="form-control" name="visitor_name" placeholder="Enter Visitor Name">
+                </div>
+                <div class="form-group">
+                    <label>Contact Number</label>
+                    <input type="text" class="form-control" name="contact_number" placeholder="Contact Number">
+                </div>
+                <div class="form-group">
+                    <label>Purpose of Visit</label>
+                    <input type="text" class="form-control" name="purpose" placeholder="Purpose">
+                </div>
+                <div class="form-group">
+                    <label>Time of Entry</label>
+                    <input type="time" class="form-control" name="time" >
+                </div>    
+                <button class="btn btn-success" type="submit">Submit</button>
+            </form>
+            <?php
+                if(!isset($_GET['data'])){
+                    exit();
+                }
+                else{
+                    $dataCheck = $_GET['data'];
 
-                if($dataCheck == 'empty'){
-                    echo '<div class="alert alert-danger">Fill all Fields</div>';
-                    exit();
+                    if($dataCheck == 'empty'){
+                        echo '<div class="alert alert-danger">Fill all Fields</div>';
+                        exit();
+                    }
+                    else if ($dataCheck == 'invalid'){
+                        echo '<div class="alert alert-danger">Invalid Contact Number</div>';
+                        exit();
+                    }
+                    else if ($dataCheck == 'success'){
+                        echo '<div class="alert alert-success"> Data Submitted </div>';
+                    }
                 }
-                else if ($dataCheck == 'invalid'){
-                    echo '<div class="alert alert-danger">Invalid Contact Number</div>';
-                    exit();
-                }
-                else if ($dataCheck == 'success'){
-                    echo '<div class="alert alert-success"> Data Submitted </div>';
-                }
-            }
-        ?>
+            ?>
+        </div>
     </div>
 </body>
 </html>
