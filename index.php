@@ -13,43 +13,45 @@
     <title>Visitor_Log</title>
 </head>
 <body>
-    <h2>Visitor Log</h2>
-    <a class="btn btn-primary" href='visitor_info.php'>Visitor Info</a>
-    <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-        <label>Visitor Name
-            <br><input type="text" name="visitor_name">
-        </label><br>
-        <label>Contact Number
-            <br><input type="text" name="contact_number">
-        </label><br>
-        <label>Purpose of Visit
-            <br><input type="text" name="purpose">
-        </label><br>
-        <label>Time of Entry
-            <br><input type="time" name="time">
-        </label><br>
-        <button type="submit">Submit</button>
-    </form>
-    <?php
-        if(!isset($_GET['data'])){
-            exit();
-        }
-        else{
-            $dataCheck = $_GET['data'];
+    <div class="container">
+        <h2>Visitor Log</h2>
+        <a class="btn btn-info" href='visitor_info.php'>Visitor Info</a>
+        <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+            <label>Visitor Name
+                <br><input type="text" name="visitor_name">
+            </label><br>
+            <label>Contact Number
+                <br><input type="text" name="contact_number">
+            </label><br>
+            <label>Purpose of Visit
+                <br><input type="text" name="purpose">
+            </label><br>
+            <label>Time of Entry
+                <br><input type="time" name="time">
+            </label><br>
+            <button class="btn btn-success" type="submit">Submit</button>
+        </form>
+        <?php
+            if(!isset($_GET['data'])){
+                exit();
+            }
+            else{
+                $dataCheck = $_GET['data'];
 
-            if($dataCheck == 'empty'){
-                echo '<div class="alert alert-danger">Fill all Fields</div>';
-                exit();
+                if($dataCheck == 'empty'){
+                    echo '<div class="alert alert-danger">Fill all Fields</div>';
+                    exit();
+                }
+                else if ($dataCheck == 'invalid'){
+                    echo '<div class="alert alert-danger">Invalid Contact Number</div>';
+                    exit();
+                }
+                else if ($dataCheck == 'success'){
+                    echo '<div class="alert alert-success"> Data Submitted </div>';
+                }
             }
-            else if ($dataCheck == 'invalid'){
-                echo '<div class="alert alert-danger">Invalid Contact Number</div>';
-                exit();
-            }
-            else if ($dataCheck == 'success'){
-                echo '<div class="alert alert-success"> Data Submitted </div>';
-            }
-        }
-    ?>
+        ?>
+    </div>
 </body>
 </html>
 

@@ -11,7 +11,26 @@ class Interaction extends Database {
     public function getVisitor(){
         $sql = "SELECT * FROM visitors";
         $data = $this->connect()->query($sql);
-        return $data;
+        return  $data;
 
+    }
+
+    public function specficVisitor($id){
+        $sql = "SELECT * FROM visitors WHERE v_id= ?";
+        $data = $this->connect()->prepare($sql);
+        $data->execute([$id]);
+        return $data;
+    }
+
+    public function updateVisitor($id,$name, $contact, $purpose, $time){
+        $sql = "UPDATE visitors SET visitor_name= ? , contact = ? , purpose = ?, time = ? WHERE v_id = ?";
+        $data = $this->connect()->prepare($sql);
+        $data->execute([$name, $contact, $purpose, $time, $id]);
+    }
+
+    public function deleteVisitor($id){
+        $sql = "DELETE FROM visitors WHERE v_id = ? ";
+        $data = $this->connect()->prepare($sql);
+        $data->execute([$id]);
     }
 }

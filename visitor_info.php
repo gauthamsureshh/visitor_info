@@ -1,5 +1,4 @@
 <?php
-
 include 'autoLoader.php';
 $data = new Interaction();
 $visitors = $data->getVisitor();
@@ -15,9 +14,19 @@ $visitors = $data->getVisitor();
     <title>Info</title>
 </head>
 <body>
+    <div class="container">
     <h1>Visitor Details</h1>
-    <p></p>
-    <a class="btn btn-info btn-sm " href="index.php">Back</a>
+    <?php
+        if(isset($_GET['data'])){
+            $dataCheck = $_GET['data'];
+            if($dataCheck == 'delete_success'){
+                echo '<div class="alert alert-danger">Deleted</div>';
+            }
+            else if($dataCheck == 'update_success'){
+                echo '<div class="alert alert-success">Updated</div>';
+            }
+        }    
+    ?>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -37,11 +46,18 @@ $visitors = $data->getVisitor();
                 <td><?php echo $visitor['time'] ?></td>
                 <td>
                     <a class="btn  btn-sm btn-warning" href="update.php?id= <?php echo $visitor['v_id']?> " >Edit</a>
-                    <a class="btn  btn-sm btn-danger" href="">Delete</a>
+                </td>
+                <td>
+                    <form action="delete.php" method="POST" >
+                        <input type="hidden" value="<?php echo $visitor['v_id'] ?>" name="visitor_id">
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
+    <a class="btn btn-info btn-sm " href="index.php">Back</a>
+    </div>
 </body>
 </html>

@@ -8,10 +8,15 @@ class Database {
     private string $dbName = "visitor_info";
 
     protected function connect(): PDO{
-        $conn = "mysql:host=$this->host; dbname=$this->dbName";
-        $pdo = new PDO($conn, $this->user, $this->pwd);
-        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        return $pdo;
+        try{
+            $conn = "mysql:host=$this->host; dbname=$this->dbName";
+            $pdo = new PDO($conn, $this->user, $this->pwd);
+            $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+            return $pdo;
+        }
+        catch(PDOException $e){
+            echo "Failed to establish a connection";
+        }
     }
 }
 
