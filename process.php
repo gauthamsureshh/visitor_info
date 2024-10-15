@@ -1,7 +1,7 @@
 <?php
 // handles the form submission
 include 'autoLoader.php';
-if($_SERVER['REQUEST_METHOD']=='POST'){
+if($_SERVER["REQUEST_METHOD"] == 'POST'){
     try{
         $userId = $_POST['visitorId'];
         $name =  htmlentities(trim($_POST['visitor_name'])) ;

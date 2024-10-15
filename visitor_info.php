@@ -2,7 +2,6 @@
 include 'autoLoader.php';
 $data = new Interaction();
 $visitors = $data->getVisitor();
-
 ?>
 
 <!DOCTYPE html>
@@ -37,43 +36,52 @@ $visitors = $data->getVisitor();
                 else if($dataCheck == 'update_success'){
                     echo '<div class="alert alert-success">Visitor Details Updated</div>';
                 }
-            }    
-        ?>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Visitor Name</th>
-                    <th>Contact</th>
-                    <th>Purpose of Visit</th>
-                    <th>Time of Entry</th>
-                    <th>VIP</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($visitors as $visitor): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars(ucfirst($visitor['visitor_name'])) ?></td>
-                    <td><?php echo htmlspecialchars($visitor['contact']) ?></td>
-                    <td><?php echo htmlspecialchars($visitor['purpose']) ?></td>
-                    <td><?php echo htmlspecialchars($visitor['time']) ?></td>
-                    <td><?php echo htmlspecialchars($visitor['vip'] == 0 ? 'No' : 'Yes') ?></td>
-                    <td>
-                        <form action="update.php" method="POST" >
-                                <input type="hidden" value="<?php echo $visitor['v_id'] ?>" name="visitor_id">
-                                <button class="btn btn-warning" type="submit">Edit</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="delete.php" method="POST" >
-                            <input type="hidden" value="<?php echo $visitor['v_id'] ?>" name="visitor_id">
-                            <button class="btn btn-danger" type="submit">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+            }
+            
+            if(empty($visitors)){
+                echo '<div class="alert alert-warning text-center">No Visitor Details Found.</div>';
+            }
+            else{ ?>
+                   
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Visitor Name</th>
+                            <th>Contact</th>
+                            <th>Purpose of Visit</th>
+                            <th>Time of Entry</th>
+                            <th>VIP</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($visitors as $visitor): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars(ucfirst($visitor['visitor_name'])) ?></td>
+                            <td><?php echo htmlspecialchars($visitor['contact']) ?></td>
+                            <td><?php echo htmlspecialchars($visitor['purpose']) ?></td>
+                            <td><?php echo htmlspecialchars($visitor['time']) ?></td>
+                            <td><?php echo htmlspecialchars($visitor['vip'] == 0 ? 'No' : 'Yes') ?></td>
+                            <td>
+                                <form action="update.php" method="POST" >
+                                        <input type="hidden" value="<?php echo $visitor['v_id'] ?>" name="visitor_id">
+                                        <button class="btn btn-warning" type="submit">Edit</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="delete.php" method="POST" >
+                                    <input type="hidden" value="<?php echo $visitor['v_id'] ?>" name="visitor_id">
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+           <?php } ?>
+        
+        
         <a class="btn btn-info btn-sm " href="index.php">Back</a>
     </div>
 </body>

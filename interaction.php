@@ -4,29 +4,30 @@ class Interaction extends Database {
     //inserts new visitor information to db.
     public function setVisitor($name, $contact, $purpose, $time,$vip_status): void{
         $sql = "INSERT INTO visitors(visitor_name, contact, purpose, time, vip) VALUES (?,?,?,?,?)";
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$name, $contact, $purpose, $time, $vip_status]);
+        $data = $this->connect()->prepare($sql);
+        $data->execute([$name, $contact, $purpose, $time, $vip_status]);
     }
 
     //get all the visitors present in db.
-    public function getVisitor(){
+    public function getVisitor(): array{
         $sql = "SELECT * FROM visitors";
-        return  $this->connect()->query($sql);
+        $data = $this->connect()->query($sql);
+        return $data->fetchAll();
     }
 
     //get a specific visitor according to the visitor id passed.
-    public function specificVisitor($id){
+    public function specificVisitor($id): array{
         $sql = "SELECT * FROM visitors WHERE v_id= ?";
         $data = $this->connect()->prepare($sql);
         $data->execute([$id]);
-        return $data;
+        return $data->fetchAll();
     }
 
     //updates a existing visitor.
     public function updateVisitor($id,$name, $contact, $purpose, $time, $vip_status): void{
         $sql = "UPDATE visitors SET visitor_name= ? , contact = ? , purpose = ?, time = ? , vip = ? WHERE v_id = ?";
         $data = $this->connect()->prepare($sql);
-        $data->execute([$name, $contact, $purpose, $time, $vip_status, $id]);
+        $data->execute([$name, $contact, $purpose, $time,   $vip_status, $id]);
     }
 
     //deletes visitor info according to the visitor id passed.

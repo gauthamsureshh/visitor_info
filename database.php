@@ -7,7 +7,7 @@ class Database {
     private string $pwd  =  "";
     private string $dbName = "visitor_info";
 
-    protected function connect(): PDO{
+    protected function connect(): PDO | string{
         try{
             $conn = "mysql:host=$this->host; dbname=$this->dbName";
             $pdo = new PDO($conn, $this->user, $this->pwd);
@@ -15,8 +15,8 @@ class Database {
             return $pdo;
         }
         catch(PDOException $e){
-            echo "Failed to establish a connection". $e->getMessage();
+            return  "Failed to establish a connection". $e->getMessage();
         }
     }
 }
-
+  

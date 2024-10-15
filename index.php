@@ -58,7 +58,7 @@
                 </div>
                 <div class="form-group">
                     <label>Contact Number</label>
-                    <input type="phone" class="form-control" name="contact_number" placeholder="Contact Number">
+                    <input type="number" class="form-control" name="contact_number" placeholder="Contact Number">
                 </div>
                 <div class="form-group">
                     <label>Purpose of Visit</label>

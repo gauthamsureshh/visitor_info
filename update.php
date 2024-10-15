@@ -1,9 +1,9 @@
 <?php
 include 'autoloader.php';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $userId = $_POST['visitor_id'];
+    $visitorId = $_POST['visitor_id'];
     $data = new Interaction();
-    $visitorData = $data->specificVisitor($userId);
+    $visitorData = $data->specificVisitor($visitorId);
 }
 else{
     header("Location: index.php");
@@ -64,7 +64,7 @@ else{
                     </div>
                     <div class="form-group">
                         <label>Contact Number</label>
-                        <input type="phone" class="form-control"  name="contact_number" value="<?php echo htmlspecialchars($visitor['contact']); ?>" required>
+                        <input type="number" class="form-control"  name="contact_number" value="<?php echo htmlspecialchars($visitor['contact']); ?>" required>
                     </div>
                     <div class="form-group">
                         <label>Purpose of Visit</label>
