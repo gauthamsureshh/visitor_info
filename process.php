@@ -8,6 +8,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $contact = filter_var($_POST['contact_number'],  FILTER_VALIDATE_INT);
         $purpose = htmlspecialchars($_POST['purpose']);
         $time = htmlspecialchars($_POST['time']);
+        $vip_status = $_POST['vip'];
 
         if(empty($name) || empty($purpose) || empty($time)){
             throw new Exception('empty');
@@ -18,26 +19,28 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
         $visitor = new Interaction();
         if($userId){
-            $visitor->updateVisitor($userId,$name, $contact, $purpose, $time);
+            // if userid exists the user requested to update an existing visitor information
+            $visitor->updateVisitor($userId,$name, $contact, $purpose, $time, $vip_status);
             header("Location: visitor_info.php?data=update_success");
         }
         else{
-            $visitor->setVisitor($name, $contact, $purpose, $time);
+            //if userid bot found, the user requested to create new visitor information.
+            $visitor->setVisitor($name, $contact, $purpose, $time,$vip_status);
             header("Location: index.php?data=success");
         }
         
 
     }
     catch(Exception $e){
+        $msg = $e->getMessage();
         if($userId){
-            $msg = $e->getMessage();
             header("Location: update.php?id=$userId data=$msg");
         }
         else{
-            $msg = $e->getMessage();
             header("Location: index.php?data=$msg");
         }
     }
 
 }
+
 

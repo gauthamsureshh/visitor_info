@@ -15,7 +15,7 @@ class Database {
             return $pdo;
         }
         catch(PDOException $e){
-            echo "Failed to establish a connection";
+            echo "Failed to establish a connection". $e->getMessage();
         }
     }
 }

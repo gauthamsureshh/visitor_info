@@ -58,7 +58,7 @@
                 </div>
                 <div class="form-group">
                     <label>Contact Number</label>
-                    <input type="text" class="form-control" name="contact_number" placeholder="Contact Number">
+                    <input type="phone" class="form-control" name="contact_number" placeholder="Contact Number">
                 </div>
                 <div class="form-group">
                     <label>Purpose of Visit</label>
@@ -67,6 +67,10 @@
                 <div class="form-group">
                     <label>Time of Entry</label>
                     <input type="time" class="form-control" name="time" >
+                </div>
+                <div class="form-group">
+                    <label>VIP</label>
+                    <input type="checkbox" name="vip" value="1">
                 </div>    
                 <button class="btn btn-success" type="submit">Submit</button>
             </form>

@@ -27,7 +27,7 @@ $visitors = $data->getVisitor();
 </head>
 <body>
     <div class="container">
-        <h1>Visitor Details</h1>
+        <h1 class="text-center">Visitor Details</h1>
         <?php
             if(isset($_GET['data'])){
                 $dataCheck = $_GET['data'];
@@ -46,18 +46,23 @@ $visitors = $data->getVisitor();
                     <th>Contact</th>
                     <th>Purpose of Visit</th>
                     <th>Time of Entry</th>
+                    <th>VIP</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($visitors as $visitor): ?>
                 <tr>
-                    <td><?php echo ucfirst($visitor['visitor_name']) ?></td>
-                    <td><?php echo $visitor['contact'] ?></td>
-                    <td><?php echo $visitor['purpose'] ?></td>
-                    <td><?php echo $visitor['time'] ?></td>
+                    <td><?php echo htmlspecialchars(ucfirst($visitor['visitor_name'])) ?></td>
+                    <td><?php echo htmlspecialchars($visitor['contact']) ?></td>
+                    <td><?php echo htmlspecialchars($visitor['purpose']) ?></td>
+                    <td><?php echo htmlspecialchars($visitor['time']) ?></td>
+                    <td><?php echo htmlspecialchars($visitor['vip'] == 0 ? 'No' : 'Yes') ?></td>
                     <td>
-                        <a class="btn  btn-sm btn-warning" href="update.php?id= <?php echo $visitor['v_id']?> " >Edit</a>
+                        <form action="update.php" method="POST" >
+                                <input type="hidden" value="<?php echo $visitor['v_id'] ?>" name="visitor_id">
+                                <button class="btn btn-warning" type="submit">Edit</button>
+                        </form>
                     </td>
                     <td>
                         <form action="delete.php" method="POST" >

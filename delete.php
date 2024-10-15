@@ -1,8 +1,15 @@
 <?php
+//handles the delete request
+
 include 'autoLoader.php';
-$visitorId =  $_POST['visitor_id'];
-$data =new Interaction();
-$data->deleteVisitor($visitorId);
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $visitorId =  $_POST['visitor_id'];
+    $data =new Interaction();
+    $data->deleteVisitor($visitorId);
 
-
-header("Location: visitor_info.php?data=delete_success");
+    // after successful deletion the page is redirect to visitor info page
+    header("Location: visitor_info.php?data=delete_success");
+}
+else{
+    header("Location: index.php");
+}

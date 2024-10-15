@@ -1,8 +1,13 @@
 <?php
 include 'autoloader.php';
-$userId = $_GET['id'];
-$data = new Interaction();
-$visitorData = $data->specficVisitor($userId);
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $userId = $_POST['visitor_id'];
+    $data = new Interaction();
+    $visitorData = $data->specificVisitor($userId);
+}
+else{
+    header("Location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +64,7 @@ $visitorData = $data->specficVisitor($userId);
                     </div>
                     <div class="form-group">
                         <label>Contact Number</label>
-                        <input type="text" class="form-control"  name="contact_number" value="<?php echo htmlspecialchars($visitor['contact']); ?>" required>
+                        <input type="phone" class="form-control"  name="contact_number" value="<?php echo htmlspecialchars($visitor['contact']); ?>" required>
                     </div>
                     <div class="form-group">
                         <label>Purpose of Visit</label>
@@ -69,6 +74,10 @@ $visitorData = $data->specficVisitor($userId);
                         <label>Time of Entry</label>
                         <input type="time" class="form-control"  name="time" value="<?php echo htmlspecialchars($visitor['time']); ?>" required>
                     </div>
+                    <div class="form-group">
+                        <label>VIP</label>
+                        <input type="checkbox" name="vip" value="1" <?php echo($visitor['vip'] == 0) ? '': "checked" ?>>
+                    </div> 
                     <button class="btn btn-success" type="submit">Update</button>
                 <?php endforeach; ?>
                 <a href="visitor_info.php" class="btn btn-info">Back</a>
