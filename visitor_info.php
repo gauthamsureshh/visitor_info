@@ -1,7 +1,9 @@
 <?php
+
 include 'autoLoader.php';
-$data = new Interaction();
-$visitors = $data->getVisitor();
+$visitor = new Visitor();
+$visitors = $visitor->getVisitor();
+
 ?>
 
 <!DOCTYPE html>
@@ -57,9 +59,9 @@ $visitors = $data->getVisitor();
                     <tbody>
                         <?php foreach ($visitors as $visitor): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars(ucfirst($visitor['visitor_name'])) ?></td>
+                            <td><?php echo htmlspecialchars(ucwords($visitor['visitor_name'])) ?></td>
                             <td><?php echo htmlspecialchars($visitor['contact']) ?></td>
-                            <td><?php echo htmlspecialchars($visitor['purpose']) ?></td>
+                            <td><?php echo htmlspecialchars(ucfirst($visitor['purpose'])) ?></td>
                             <td><?php echo htmlspecialchars($visitor['time']) ?></td>
                             <td><?php echo htmlspecialchars($visitor['vip'] == 0 ? 'No' : 'Yes') ?></td>
                             <td>

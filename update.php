@@ -2,7 +2,7 @@
 include 'autoloader.php';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $visitorId = $_POST['visitor_id'];
-    $data = new Interaction();
+    $data = new Visitor();
     $visitorData = $data->specificVisitor($visitorId);
 }
 else{
@@ -60,7 +60,7 @@ else{
                     <input type="hidden" name="visitorId" value="<?php echo htmlspecialchars($visitor['v_id']); ?>">
                     <div class="form-group">
                         <label >Visitor Name</label>
-                        <input type="text" class="form-control" name="visitor_name" value="<?php echo htmlspecialchars($visitor['visitor_name']); ?>" required>
+                        <input type="text" class="form-control" name="visitor_name" value="<?php echo htmlspecialchars(ucwords($visitor['visitor_name'])); ?>" required>
                     </div>
                     <div class="form-group">
                         <label>Contact Number</label>
@@ -68,7 +68,7 @@ else{
                     </div>
                     <div class="form-group">
                         <label>Purpose of Visit</label>
-                        <input type="text" class="form-control"  name="purpose" value="<?php echo htmlspecialchars($visitor['purpose']); ?>" required>
+                        <input type="text" class="form-control"  name="purpose" value="<?php echo htmlspecialchars(ucfirst($visitor['purpose'])); ?>" required>
                     </div>
                     <div class="form-group">
                         <label>Time of Entry</label>

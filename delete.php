@@ -4,7 +4,7 @@
 include 'autoLoader.php';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $visitorId =  $_POST['visitor_id'];
-    $data =new Interaction();
+    $data =new Visitor();
     $data->deleteVisitor($visitorId);
 
     // after successful deletion the page is redirect to visitor info page

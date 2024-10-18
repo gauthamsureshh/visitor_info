@@ -1,7 +1,7 @@
 <?php
 
 //class to establish connection with database(Name: visitor_log)
-class Database {
+abstract class Database {
     private string $host = "localhost";
     private string $user = "root";
     private string $pwd  =  "";
