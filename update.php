@@ -76,7 +76,7 @@ else{
                     </div>
                     <div class="form-group">
                         <label>VIP</label>
-                        <input type="checkbox" name="vip" value="1" <?php echo($visitor['vip'] == 0) ? '': "checked" ?>>
+                        <input type="checkbox" name="vip_status" value="1" <?php echo($visitor['vip'] == 0) ? '': "checked" ?>>
                     </div> 
                     <button class="btn btn-success" type="submit">Update</button>
                 <?php endforeach; ?>

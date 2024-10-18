@@ -2,10 +2,10 @@
 
 class Visitor extends Database {
 
-    private string $visitor_name;
-    private string $contact_number;
-    private string $purpose;
-    private string $time;
+    protected string $visitor_name;
+    protected string $contact_number;
+    protected string $purpose;
+    protected string $time;
 
     public function __construct($visitor_name='', $contact_number='', $purpose='', $time='') {
         $this->visitor_name = $visitor_name;
@@ -56,7 +56,7 @@ class Visitor extends Database {
     //updates a existing visitor.
     public function updateVisitor($id): void{
         try{
-            $sql = "UPDATE visitors SET visitor_name= ? , contact = ? , purpose = ?, time = ? WHERE v_id = ?";
+            $sql = "UPDATE visitors SET visitor_name= ? , contact = ? , purpose = ?, time = ?  WHERE v_id = ?";
             $data = $this->connect()->prepare($sql);
             $data->execute([$this->visitor_name, $this->contact_number, $this->purpose, $this->time, $id]);
         }

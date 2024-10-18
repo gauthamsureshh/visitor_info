@@ -70,8 +70,8 @@
                 </div>
                 <div class="form-group">
                     <label>VIP</label>
-                    <input type="checkbox" name="vip" value="1">
-                </div>    
+                    <input type="checkbox" name="vip_status" value="1">
+                </div>
                 <button class="btn btn-success" type="submit">Submit</button>
             </form>
             <?php
