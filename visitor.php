@@ -54,16 +54,16 @@ class Visitor extends Database {
     }
 
     //updates a existing visitor.
-    public function updateVisitor($id): void{
-        try{
-            $sql = "UPDATE visitors SET visitor_name= ? , contact = ? , purpose = ?, time = ?  WHERE v_id = ?";
-            $data = $this->connect()->prepare($sql);
-            $data->execute([$this->visitor_name, $this->contact_number, $this->purpose, $this->time, $id]);
-        }
-        catch(PDOException $e) {
-            echo "Error while Updating Visitor with ID: $id " . $e->getMessage();
-        }
-    }
+    // public function updateVisitor($id): void{
+    //     try{
+    //         $sql = "UPDATE visitors SET visitor_name= ? , contact = ? , purpose = ?, time = ?  WHERE v_id = ?";
+    //         $data = $this->connect()->prepare($sql);
+    //         $data->execute([$this->visitor_name, $this->contact_number, $this->purpose, $this->time, $id]);
+    //     }
+    //     catch(PDOException $e) {
+    //         echo "Error while Updating Visitor with ID: $id " . $e->getMessage();
+    //     }
+    // }
 
     //deletes visitor info according to the visitor id passed.
     public function deleteVisitor($id): void{

@@ -14,40 +14,7 @@ else{
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-                background-image: url('https://getwallpapers.com/wallpaper/full/1/d/8/1291078-full-size-dark-minimal-wallpaper-1920x1080-for-full-hd.jpg'); 
-                background-size: cover;
-                background-position: center;
-                height: 100vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: white;
-            }
-        .card {
-                opacity: 0.9; 
-                max-width: 500px;
-                padding: 20px;
-                border-radius: 10px; 
-            }
-        .card-title {
-                color: whitesmoke;
-                text-align: center;
-                margin-bottom: 20px;
-            }
-        .form-group label {
-                color: wheat; 
-            }
-        .form-control {
-                background-color: rgba(255, 255, 255, 0.8); 
-                border: 1px solid #ccc; 
-            }
-        .btn {
-                width: 100%; 
-                margin-top: 15px;
-            }
-    </style>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <title>Update Info</title>
 </head>
