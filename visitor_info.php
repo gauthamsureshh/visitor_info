@@ -1,8 +1,13 @@
 <?php
 
 include 'autoLoader.php';
-$visitor = new Visitor();
-$visitors = $visitor->getVisitor();
+if($_SESSION['loggedstatus'] == true){
+    $visitor = new Visitor();
+    $visitors = $visitor->getVisitor();
+}
+else{
+    header("Location: login.php");
+}
 
 ?>
 

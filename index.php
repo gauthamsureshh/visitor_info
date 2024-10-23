@@ -15,8 +15,7 @@
 <body>
     <div class="card">
         <div class="card-body">
-            <h1 class="card-title">Visitor Log</h1>
-            <a class="btn btn-info" href='visitor_info.php'>Visitor Info</a>
+            <h1 class="card-title">Enrol Visitor</h1>
             <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                 <div class="form-group">
                     <label>Visitor Name</label>
@@ -38,7 +37,7 @@
                     <label>VIP</label>
                     <input type="checkbox" name="vip_status" value="1">
                 </div>
-                <button class="btn btn-success" type="submit">Submit</button>
+                <button class="btn btn-success" type="submit" style="margin-bottom: 20px;">Submit</button>
             </form>
             <?php
                 if(!isset($_GET['data'])){
@@ -57,6 +56,9 @@
                     }
                     else if ($dataCheck == 'success'){
                         echo '<div class="alert alert-success"> Data Submitted </div>';
+                    }
+                    else if ($dataCheck == 'logged'){
+                        echo '<div class="alert alert-success"> User Logged </div>';
                     }
                 }
             ?>
